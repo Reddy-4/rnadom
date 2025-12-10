@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailing Panda | Premium Car Protection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #C41E3A;
+            --deep-red: #8B0000;
+            --blood-red: #660000;
+            --charcoal: #1a1a1a;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #030303;
+            --text-light: #f5f5f5;
+            --text-muted: #777;
+            --text-dim: #444;
+            --glass-white: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::selection {
+            background: var(--primary-red);
+            color: white;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--darker-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-red);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: transparent;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            background: rgba(3, 3, 3, 0.95);
+            backdrop-filter: blur(30px);
+            padding: 1rem 5%;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-btn {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            margin-right: 2rem;
+        }
+
+        .menu-btn span {
+            width: 22px;
+            height: 1.5px;
+            background: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn:hover span {
+            background: var(--primary-red);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 55px;
+            width: auto;
+            filter: drop-shadow(0 0 20px rgba(196, 30, 58, 0.15));
+            transition: all 0.4s ease;
+        }
+
+        .logo:hover .logo-img {
+            filter: drop-shadow(0 0 30px rgba(196, 30, 58, 0.3));
+        }
+
+        .nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-logo-center {
+            height: 50px;
+            filter: drop-shadow(0 0 20px rgba(196, 30, 58, 0.2));
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-right a {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-right a:hover {
+            color: var(--text-light);
+        }
+
+        /* Hero Section - Porsche Style */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: linear-gradient(180deg, 
+                #000000 0%, 
+                #0a0a0a 30%, 
+                #111111 50%,
+                #1a1a1a 70%,
+                #888888 85%,
+                #aaaaaa 92%,
+                #cccccc 100%
+            );
+        }
+
+        .hero-dark-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70%;
+            background: radial-gradient(ellipse at 50% 20%, rgba(30, 30, 30, 0.3) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-vignette {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse at 0% 50%, rgba(0,0,0,0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 50%, rgba(0,0,0,0.4) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-red-glow {
+            position: absolute;
+            bottom: 35%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 150px;
+            background: radial-gradient(ellipse, rgba(196, 30, 58, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            filter: blur(50px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding-top: 18vh;
+            flex-shrink: 0;
+        }
+
+        .hero-brand {
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.3s;
+        }
+
+        .hero-brand-logo {
+            height: 70px;
+            filter: drop-shadow(0 0 40px rgba(196, 30, 58, 0.25));
+        }
+
+        .hero-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 700;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: titleReveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.5s;
+            text-shadow: 0 0 80px rgba(255,255,255,0.1);
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-weight: 300;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.15em;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.8s;
+        }
+
+        .hero-subtitle span {
+            color: var(--primary-red);
+        }
+
+        .hero-cta {
+            display: inline-block;
+            margin-top: 2.5rem;
+            padding: 1rem 3rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--text-light);
+            background: transparent;
+            border: 1px solid var(--primary-red);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 1s;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-red);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .hero-cta:hover {
+            color: white;
+            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.4);
+        }
+
+        .hero-cta:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        @keyframes titleReveal {
+            0% { 
+                opacity: 0; 
+                letter-spacing: 0.5em;
+                transform: translateY(20px);
+            }
+            100% { 
+                opacity: 1; 
+                letter-spacing: 0.35em;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Car Container */
+        .hero-car-wrapper {
+            position: absolute;
+            bottom: 8%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 5;
+        }
+
+        .hero-car-container {
+            position: relative;
+            width: 70%;
+            max-width: 1000px;
+        }
+
+        .hero-car {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0;
+            animation: carSlideIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.4s;
+            filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.6));
+            transform-origin: center bottom;
+        }
+
+        @keyframes carSlideIn {
+            0% { 
+                opacity: 0; 
+                transform: translateX(-50px) scale(0.98);
+            }
+            60% {
+                opacity: 1;
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        /* Floor reflection effect */
+        .hero-floor {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(100, 100, 100, 0.08) 30%,
+                rgba(150, 150, 150, 0.15) 60%,
+                rgba(180, 180, 180, 0.25) 85%,
+                rgba(200, 200, 200, 0.35) 100%
+            );
+            pointer-events: none;
+        }
+
+        .hero-floor-line {
+            position: absolute;
+            bottom: 38%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 5%, 
+                rgba(255,255,255,0.12) 20%,
+                rgba(255,255,255,0.2) 50%,
+                rgba(255,255,255,0.12) 80%,
+                transparent 95%
+            );
+        }
+
+        .hero-floor-line-2 {
+            position: absolute;
+            bottom: 34%;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255,255,255,0.06) 30%,
+                rgba(255,255,255,0.06) 70%,
+                transparent 100%
+            );
+        }
+
+        /* Vertical accent lines */
+        .hero-accent-line {
+            position: absolute;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, rgba(255,255,255,0.1), transparent);
+            pointer-events: none;
+        }
+
+        .hero-accent-line.left {
+            left: 15%;
+            top: 30%;
+            height: 40%;
+        }
+
+        .hero-accent-line.right {
+            right: 15%;
+            top: 30%;
+            height: 40%;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.5s;
+        }
+
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        .scroll-arrow svg {
+            width: 16px;
+            height: 16px;
+            stroke: rgba(0,0,0,0.4);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); opacity: 0.5; }
+            50% { transform: translateY(8px); opacity: 1; }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 10rem 5%;
+            position: relative;
+            background: var(--darker-bg);
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5em;
+            color: var(--primary-red);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--primary-red);
+            opacity: 0.5;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            color: var(--text-light);
+            letter-spacing: 0.1em;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
+            transform: scaleX(0);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(196, 30, 58, 0.3);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: grayscale(30%);
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.08);
+            filter: grayscale(0%);
+        }
+
+        .service-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, var(--darker-bg) 0%, transparent 60%);
+        }
+
+        .service-number {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.06);
+            line-height: 1;
+        }
+
+        .service-content {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .service-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+            letter-spacing: 0.05em;
+        }
+
+        .service-description {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .service-benefits h4 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--primary-red);
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .benefits-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.4rem 0.6rem;
+            background: rgba(196, 30, 58, 0.05);
+            border: 1px solid rgba(196, 30, 58, 0.12);
+            font-size: 0.65rem;
+            color: var(--text-light);
+            letter-spacing: 0.02em;
+        }
+
+        .benefit-tag svg {
+            width: 8px;
+            height: 8px;
+            stroke: var(--primary-red);
+            fill: none;
+            stroke-width: 3;
+        }
+
+        .service-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .service-price {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--text-light);
+        }
+
+        .service-price span {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            margin-left: 0.2rem;
+        }
+
+        .service-cta {
+            padding: 0.8rem 1.5rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-light);
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            text-decoration: none;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-red);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+            z-index: -1;
+        }
+
+        .service-cta:hover {
+            border-color: var(--primary-red);
+            color: white;
+        }
+
+        .service-cta:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            padding: 10rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .philosophy-image {
+            position: relative;
+            height: 550px;
+        }
+
+        .philosophy-image::before {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: -25px;
+            right: 25px;
+            bottom: 25px;
+            border: 1px solid var(--primary-red);
+            opacity: 0.15;
+        }
+
+        .philosophy-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+            filter: grayscale(20%);
+            transition: all 0.6s ease;
+        }
+
+        .philosophy-image:hover .philosophy-img {
+            filter: grayscale(0%);
+        }
+
+        .philosophy-content .section-label {
+            justify-content: flex-start;
+        }
+
+        .philosophy-content .section-label::before {
+            display: none;
+        }
+
+        .philosophy-content .section-title {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .philosophy-text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(196, 30, 58, 0.05);
+            border: 1px solid rgba(196, 30, 58, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        .feature-item:hover .feature-icon {
+            background: rgba(196, 30, 58, 0.1);
+            border-color: var(--primary-red);
+        }
+
+        .feature-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--primary-red);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .feature-text {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-light);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* Experience Section */
+        .experience {
+            padding: 8rem 5%;
+            background: var(--darker-bg);
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .experience-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 50%;
+            background: var(--glass-border);
+        }
+
+        .experience-number {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            background: linear-gradient(180deg, var(--primary-red) 0%, var(--deep-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.8rem;
+        }
+
+        .experience-label {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 10rem 5%;
+            background: var(--dark-bg);
+        }
+
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text-light);
+            line-height: 2;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10rem;
+            font-family: 'Cinzel', serif;
+            color: var(--primary-red);
+            opacity: 0.06;
+            line-height: 1;
+        }
+
+        .testimonial-author {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .testimonial-role {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 0.4rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 10rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            background: var(--darker-bg);
+        }
+
+        .contact-info h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-info > p {
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.9;
+            font-size: 0.9rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(196, 30, 58, 0.05);
+            border: 1px solid rgba(196, 30, 58, 0.12);
+            transition: all 0.4s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            background: rgba(196, 30, 58, 0.1);
+            border-color: var(--primary-red);
+        }
+
+        .contact-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--primary-red);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .contact-text {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            letter-spacing: 0.03em;
+        }
+
+        .contact-form {
+            background: linear-gradient(180deg, rgba(255,255,255,0.015) 0%, transparent 100%);
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            background: var(--dark-bg);
+            border: 1px solid var(--glass-border);
+            outline: none;
+            transition: all 0.4s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            border-color: var(--primary-red);
+            box-shadow: 0 0 25px rgba(196, 30, 58, 0.08);
+        }
+
+        .form-textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23777' stroke-width='1.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 14px;
+        }
+
+        .form-select option {
+            background: var(--dark-bg);
+            color: var(--text-light);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1.2rem;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--text-light);
+            background: transparent;
+            border: 1px solid var(--primary-red);
+            cursor: pointer;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .form-submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-red);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+            z-index: -1;
+        }
+
+        .form-submit:hover {
+            color: white;
+            box-shadow: 0 15px 40px rgba(196, 30, 58, 0.3);
+        }
+
+        .form-submit:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: var(--darker-bg);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            height: 45px;
+            filter: drop-shadow(0 0 15px rgba(196, 30, 58, 0.15));
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-copyright {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 55px;
+            height: 55px;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.4s ease;
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn svg {
+            width: 26px;
+            height: 26px;
+            fill: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .philosophy {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .philosophy-image {
+                height: 400px;
+            }
+
+            .contact {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-item:not(:last-child)::after {
+                display: none;
+            }
+
+            .hero-car-container {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.2rem 4%;
+            }
+
+            .nav-right {
+                display: none;
+            }
+
+            .hero-content {
+                padding-top: 15vh;
+            }
+
+            .hero-title {
+                letter-spacing: 0.2em;
+            }
+
+            .hero-car-wrapper {
+                height: 45%;
+            }
+
+            .hero-car-container {
+                width: 110%;
+            }
+
+            .philosophy-features {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-left">
+            <div class="menu-btn">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="nav-center">
+            <a href="#home" class="logo">
+                <img src="detailing-panda-logo-1.png" alt="Detailing Panda" class="nav-logo-center">
+            </a>
+        </div>
+        <div class="nav-right">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-dark-overlay"></div>
+        <div class="hero-vignette"></div>
+        <div class="hero-red-glow"></div>
+        <div class="hero-accent-line left"></div>
+        <div class="hero-accent-line right"></div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title"> ‎ DETAILING PANDA</h1>
+            <p class="hero-subtitle">Premium <span>Protection</span> Perfected</p>
+            <a href="#" class="hero-cta" onclick="bookService('Premium Detailing Service')">Book Now</a>
+        </div>
+
+        <div class="hero-floor"></div>
+        <div class="hero-floor-line"></div>
+        <div class="hero-floor-line-2"></div>
+
+        <div class="hero-car-wrapper">
+            <div class="hero-car-container">
+                <img src="try.avif" alt="Porsche 911" class="hero-car">
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">
+                <svg viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <p class="section-label">Our Services</p>
+            <h2 class="section-title">Premium Protection</h2>
+        </div>
+        <div class="services-grid">
+            <!-- PPF Service -->
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=800&q=80" alt="Paint Protection Film">
+                    <div class="service-image-overlay"></div>
+                    <span class="service-number">01</span>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Paint Protection Film</h3>
+                    <p class="service-description">Ultimate invisible armor with self-healing technology protecting against rock chips and scratches.</p>
+                    <div class="service-benefits">
+                        <h4>Benefits</h4>
+                        <div class="benefits-list">
+                            <span class="benefit-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Self-Healing</span>
+                            <span class="benefit-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Rock Chip Protection</span>
+                            <span class="benefit-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>UV Resistance</span>
+                            <span class="benefit-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>10 Year Warranty</span>
+                        </div>
+                    </div>
+                    <div class="service-footer">
+                        <div class="service-price">₹45,000<span>onwards</span></div>
+                        <a href="#" class="service-cta" onclick="bookService('PPF (Paint Protection Film)')">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Graphene Coating -->
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80" alt="Graphene Coating">
+                    <div class="service-image-overlay"></div>
+                    <span class="service-number">02</span>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Graphene Coating</h3>
+                    <p class="service-description">Next-generation protection with advanced graphene technology for superior heat dissipation.</p>
+                    <div class="service-benefits">
+                        <h4>Benefits</h4>
+                        <div class="benefits-list">
+                            <span class="benefit-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Heat Resistance</span>
+                            <span class="benefit-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Anti-Static</span>
+                            <span class="benefit-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Extreme Gloss</span>
+                            <span class="benefit-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>7+ Years</span>
+                        </div>
+                    </div>
+                    <div class="service-footer">
+                        <div class="service-price">₹25,000<span>onwards</span></div>
+                        <a href="#" class="service-cta" onclick="bookService('Graphene Coating')">Book Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ceramic Coating -->
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80" alt="Ceramic Coating">
+                    <div class="service-image-overlay"></div>
+                    <span class="service-number">03</span>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Ceramic Coating</h3>
+                    <p class="service-description">Industry-leading 9H hardness ceramic for permanent bond and long-lasting shine.</p>
+                    <div class="service-benefits">
+                        <h4>Benefits</h4>
+                        <div class="benefits-list">
+                            <span class="benefit-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>9H Hardness</span>
+                            <span class="benefit-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Hydrophobic</span>
+                            <span class="benefit-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>UV Protection</span>
+                            <span class="benefit-tag"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>5 Years</span>
+                        </div>
+                    </div>
+                    <div class="service-footer">
+                        <div class="service-price">₹15,000<span>onwards</span></div>
+                        <a href="#" class="service-cta" onclick="bookService('Ceramic Coating')">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy" id="about">
+        <div class="philosophy-image">
+            <img src="https://images.unsplash.com/photo-1605515298946-d062f2e9da53?w=800&q=80" alt="Professional Detailing" class="philosophy-img">
+        </div>
+        <div class="philosophy-content">
+            <p class="section-label">Why Choose Us</p>
+            <h2 class="section-title">The Detailing Panda Difference</h2>
+            <p class="philosophy-text">At Detailing Panda, we combine cutting-edge technology with meticulous craftsmanship. Our certified technicians use only premium-grade products to deliver protection that lasts.</p>
+            <p class="philosophy-text">From exotic supercars to daily drivers, every vehicle receives our signature attention to detail and uncompromising quality standards.</p>
+            <div class="philosophy-features">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+                    </div>
+                    <span class="feature-text">Certified Installers</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                    </div>
+                    <span class="feature-text">Premium Products</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2" /><line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" /></svg>
+                    </div>
+                    <span class="feature-text">100% Satisfaction</span>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+                    </div>
+                    <span class="feature-text">Flexible Scheduling</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience">
+        <div class="experience-grid">
+            <div class="experience-item">
+                <div class="experience-number">8+</div>
+                <div class="experience-label">Years Experience</div>
+            </div>
+            <div class="experience-item">
+                <div class="experience-number">3K+</div>
+                <div class="experience-label">Cars Protected</div>
+            </div>
+            <div class="experience-item">
+                <div class="experience-number">100%</div>
+                <div class="experience-label">Satisfaction Rate</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-header">
+            <p class="section-label">Testimonials</p>
+            <h2 class="section-title">Client Stories</h2>
+        </div>
+        <div class="testimonials-container">
+            <p class="testimonial-quote">The PPF installation on my BMW was flawless. Detailing Panda's team is incredibly skilled and professional. My car looks better than the day I bought it.</p>
+            <p class="testimonial-author">Vikram Singh</p>
+            <p class="testimonial-role">BMW M4 Owner</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-info">
+            <p class="section-label">Get In Touch</p>
+            <h3>Ready to Protect Your Investment?</h3>
+            <p>Book your appointment today and give your vehicle the protection it deserves.</p>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                    </div>
+                    <span class="contact-text">+91 98765 43210</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
+                    </div>
+                    <span class="contact-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3d55585151527d5958495c545154535a4d5c53595c135e5250">[email&#160;protected]</a></span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                    </div>
+                    <span class="contact-text">123 Auto Lane, Hyderabad 500001</span>
+                </div>
+            </div>
+        </div>
+        <div class="contact-form" id="book">
+            <form id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-input" id="customerName" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-input" id="customerPhone" placeholder="+91 XXXXX XXXXX" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" id="customerEmail" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Service</label>
+                    <select class="form-select" id="serviceSelect" required>
+                        <option value="">Select a Service</option>
+                        <option value="PPF (Paint Protection Film) - ₹45,000 onwards">PPF (Paint Protection Film)</option>
+                        <option value="Graphene Coating - ₹25,000 onwards">Graphene Coating</option>
+                        <option value="Ceramic Coating - ₹15,000 onwards">Ceramic Coating</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Vehicle</label>
+                    <input type="text" class="form-input" id="vehicleDetails" placeholder="e.g., Porsche 911 2024">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Message</label>
+                    <textarea class="form-textarea" id="customerMessage" placeholder="Any specific requirements..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">Book Now</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="detailing-panda-logo-1.png" alt="Detailing Panda">
+            </div>
+            <ul class="footer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <p class="footer-copyright">© 2025 Detailing Panda. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/919876543210?text=Hi%20Detailing%20Panda!%20I'm%20interested%20in%20your%20services." class="whatsapp-btn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const whatsappNumber = '919876543210';
+
+        function bookService(serviceName) {
+            event.preventDefault();
+            const message = encodeURIComponent(`Hi Detailing Panda!\n\nI'm interested in booking: *${serviceName}*\n\nPlease share more details about pricing and availability.`);
+            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+        }
+
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const email = document.getElementById('customerEmail').value;
+            const service = document.getElementById('serviceSelect').value;
+            const vehicle = document.getElementById('vehicleDetails').value;
+            const message = document.getElementById('customerMessage').value;
+
+            let whatsappMessage = `Hi Detailing Panda!\n\n*New Booking Request*\n\n`;
+            whatsappMessage += `*Name:* ${name}\n`;
+            whatsappMessage += `*Phone:* ${phone}\n`;
+            if (email) whatsappMessage += `*Email:* ${email}\n`;
+            whatsappMessage += `*Service:* ${service}\n`;
+            if (vehicle) whatsappMessage += `*Vehicle:* ${vehicle}\n`;
+            if (message) whatsappMessage += `*Message:* ${message}\n`;
+
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .experience-item').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `all 0.7s ease ${i * 0.1}s`;
+            observer.observe(el);
+        });
+
+        const counters = document.querySelectorAll('.experience-number');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const text = target.textContent;
+                    const number = parseInt(text);
+                    const suffix = text.replace(/[0-9]/g, '');
+                    let current = 0;
+                    const timer = setInterval(() => {
+                        current += number / 50;
+                        if (current >= number) {
+                            target.textContent = text;
+                            clearInterval(timer);
+                        } else {
+                            target.textContent = Math.floor(current) + suffix;
+                        }
+                    }, 20)}})});
